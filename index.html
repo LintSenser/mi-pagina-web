@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiradas Aleatorias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Tiradas Aleatorias</h2>
+    <p>Ingresa la cantidad de tiradas:</p>
+    <input type="number" id="numTiradas" min="1" placeholder="Ej: 5">
+    <button onclick="realizarTiradas()">Hacer tiradas</button>
+    <div class="result" id="resultado"></div>
+</div>
+
+<script>
+    function realizarTiradas() {
+        let lista = [];
+        let opciones = ["diamantina", "heces de bijuu", "cacho de rashomon", "cacho de espina shinjuu", "sangre divina", "pelo de bijuu", "sangre de bijuu"];
+        let numTiradas = document.getElementById("numTiradas").value;
+        
+        if (numTiradas < 1) {
+            document.getElementById("resultado").innerText = "Por favor, ingresa un número válido.";
+            return;
+        }
+        
+        for (let i = 0; i < numTiradas; i++) {
+            let test = opciones[Math.floor(Math.random() * opciones.length)];
+            lista.push(test);
+        }
+        
+        document.getElementById("resultado").innerText = "Resultados: " + lista.join(", ");
+    }
+</script>
+
+</body>
+</html>
+
+Agregar archivo index.html
