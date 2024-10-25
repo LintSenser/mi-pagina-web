@@ -45,6 +45,7 @@
         .result {
             margin-top: 20px;
             font-weight: bold;
+            text-align: left;
         }
     </style>
 </head>
@@ -60,21 +61,31 @@
 
 <script>
     function realizarTiradas() {
-        let lista = [];
-        let opciones = ["diamantina", "heces de bijuu", "cacho de rashomon", "cacho de espina shinjuu", "sangre divina", "pelo de bijuu", "sangre de bijuu"];
+        let opciones = ["Diamantina", "Heces de bijuu", "Cacho de Rashomon", "Cacho de espina shinjuu", "Sangre divina", "Pelo de bijuu", "Sangre de bijuu"];
         let numTiradas = document.getElementById("numTiradas").value;
         
         if (numTiradas < 1) {
             document.getElementById("resultado").innerText = "Por favor, ingresa un número válido.";
             return;
         }
-        
+
+        // Inicializamos un objeto para contar cada resultado
+        let contador = {};
+        opciones.forEach(opcion => contador[opcion] = 0);
+
+        // Realizamos las tiradas y contamos cada resultado
         for (let i = 0; i < numTiradas; i++) {
-            let test = opciones[Math.floor(Math.random() * opciones.length)];
-            lista.push(test);
+            let resultado = opciones[Math.floor(Math.random() * opciones.length)];
+            contador[resultado]++;
         }
         
-        document.getElementById("resultado").innerText = "Resultados: " + lista.join(", ");
+        // Generamos el texto para mostrar los resultados
+        let resultadoTexto = "Resultados:<br>";
+        for (let opcion in contador) {
+            resultadoTexto += `${opcion}: ${contador[opcion]} veces<br>`;
+        }
+        
+        document.getElementById("resultado").innerHTML = resultadoTexto;
     }
 </script>
 
